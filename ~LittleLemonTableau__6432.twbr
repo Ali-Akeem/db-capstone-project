@@ -3868,6 +3868,16 @@
       </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
     </datasource>
   </datasources>
+  <actions>
+    <action caption='Filter 1 (generated)' name='[Action1_BDA25CE9FB6745F0A0FDC4D3334135C9]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Little Lemon Sales' type='sheet' worksheet='Customer Sales' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Little Lemon Sales' />
+      </command>
+    </action>
+  </actions>
   <worksheets>
     <worksheet name=' Cuisine Sales and Profits'>
       <table>
@@ -3893,7 +3903,11 @@
           </slices>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0mb6qhf0rj71es1cfarc21qs7hep].[yr:Order Date:ok]' value='53' />
+          </style-rule>
+        </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
@@ -3908,6 +3922,10 @@
               <style-rule element='mark'>
                 <format attr='mark-labels-show' value='true' />
                 <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
               </style-rule>
             </style>
           </pane>
@@ -4013,7 +4031,7 @@
       <layout-options>
         <title>
           <formatted-text>
-            <run>Sales Bubble Chart</run>
+            <run>Sales Pie Chart</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -4033,9 +4051,19 @@
             <column-instance column='[Calculation_452611782098247680]' derivation='Sum' name='[sum:Calculation_452611782098247680:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Sales]' derivation='Sum' name='[sum:Sales:qk]' pivot='key' type='quantitative' />
           </datasource-dependencies>
+          <filter class='categorical' column='[federated.0mb6qhf0rj71es1cfarc21qs7hep].[Action (Customer Name)]'>
+            <groupfilter function='level-members' level='[Customer Name]' user:ui-action-filter='[Action1_BDA25CE9FB6745F0A0FDC4D3334135C9]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0mb6qhf0rj71es1cfarc21qs7hep].[Action (Customer Name)]</column>
+          </slices>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='214' />
+          </style-rule>
+        </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
@@ -4059,6 +4087,10 @@
                 <format attr='mark-labels-mode' value='all' />
                 <format attr='mark-labels-range-scope' value='pane' />
                 <format attr='mark-labels-range-field' value='' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
               </style-rule>
             </style>
           </pane>
@@ -4209,7 +4241,7 @@
       </cards>
       <simple-id uuid='{977C05B0-34C1-4639-81B9-776460D8FA2D}' />
     </window>
-    <window class='worksheet' maximized='true' name=' Cuisine Sales and Profits'>
+    <window class='worksheet' name=' Cuisine Sales and Profits'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -4237,7 +4269,7 @@
       </cards>
       <simple-id uuid='{C4B248D0-5354-490D-BA38-0170E50C4300}' />
     </window>
-    <window class='dashboard' name='Little Lemon Sales'>
+    <window class='dashboard' maximized='true' name='Little Lemon Sales'>
       <viewpoints>
         <viewpoint name='Customer Sales'>
           <zoom type='entire-view' />
